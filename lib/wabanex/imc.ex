@@ -24,5 +24,7 @@ defmodule Wabanex.IMC do
     |> calculate_imc()
   end
 
-  defp calculate_imc([name, height, weight]), do: {name, weight / (height * height)}
+  defp calculate_imc([name, height, weight]) do
+    {name, Float.round(weight / Float.pow(height, 2.0), 2)}
+  end
 end
