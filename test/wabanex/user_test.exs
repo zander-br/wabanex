@@ -13,5 +13,12 @@ defmodule Wabanex.UserTest do
         errors: []
       } = response
     end
+
+    test "when there are invalid params, returns a invalid changeset" do
+      params = %{name: "Joe Doe", email: "joe.doe@email.com"}
+      response = User.changeset(params)
+      expected_response = %{password: ["can't be blank"]}
+      assert errors_on(response) == expected_response
+    end
   end
 end
