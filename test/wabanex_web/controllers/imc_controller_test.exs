@@ -18,5 +18,15 @@ defmodule WabanexWeb.IMCControllerTest do
         }}
       assert response == expected_response
     end
+
+    test "when there are invalid params, returns an error", %{conn: conn} do
+      params = %{"filename" => "another.csv"}
+      response =
+        conn
+        |> get(Routes.imc_path(conn, :index, params))
+        |> json_response(:bad_request)
+      expected_response = %{"result" => "Error while opening the file"}
+      assert response == expected_response
+    end
   end
 end
