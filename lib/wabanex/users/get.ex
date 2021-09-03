@@ -23,8 +23,11 @@ defmodule Wabanex.Users.Get do
 
   defp load_training(user) do
     today = Date.utc_today()
-    query = from training in Training,
-      where: ^today >= training.start_date and ^today <= training.end_date
+
+    query =
+      from training in Training,
+        where: ^today >= training.start_date and ^today <= training.end_date
+
     Repo.preload(user, trainings: {first(query, :inserted_at), :exercises})
   end
 end

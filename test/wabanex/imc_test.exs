@@ -7,13 +7,17 @@ defmodule Wabanex.IMCTest do
     test "when the file exists, returns the data" do
       params = %{"filename" => "students.csv"}
       response = IMC.calculate(params)
-      expected_response = {:ok, %{
-        "Anderson" => 27.64,
-        "Dani" => 23.44,
-        "Diego" => 23.04,
-        "Gabul" => 22.86,
-        "Rodrigo" => 26.23
-      }}
+
+      expected_response =
+        {:ok,
+         %{
+           "Anderson" => 27.64,
+           "Dani" => 23.44,
+           "Diego" => 23.04,
+           "Gabul" => 22.86,
+           "Rodrigo" => 26.23
+         }}
+
       assert response == expected_response
     end
 

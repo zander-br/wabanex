@@ -6,12 +6,16 @@ defmodule Wabanex.User do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @fields [:email, :password, :name]
+  @fields [:name, :email, :password, :height, :weight, :fat_index, :muscle_index]
 
   schema "users" do
     field :email, :string
     field :name, :string
     field :password, :string
+    field :height, :float
+    field :weight, :float
+    field :fat_index, :float
+    field :muscle_index, :float
 
     has_many :trainings, Training
 
@@ -24,7 +28,7 @@ defmodule Wabanex.User do
     |> validate_required(@fields)
     |> validate_length(:password, min: 6)
     |> validate_length(:name, min: 2)
-    |> validate_format(:email, ~r/@/)
+    |> validate_format(:email, ~r/^(.+)@(.+)$/)
     |> unique_constraint([:email])
   end
 end

@@ -25,5 +25,4 @@ defmodule Wabanex.Exercise do
     |> cast(params, @fields)
     |> validate_required(@fields)
   end
-
 end
